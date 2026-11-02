@@ -182,6 +182,15 @@ input[type="file"] { font-size: 13px; color: var(--text); max-width: 100%; }
 .aishou-head-names { font-size: 15px; }
 .total-score { font-size: 20px; font-weight: bold; margin: 4px 0 2px; }
 
+/* ホーム画面追加の案内カード */
+.install-card {
+  margin: 16px 0 4px; padding: 10px 12px;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--field-bg);
+}
+.install-card .install-text { font-size: 14px; margin: 2px 0 6px; }
+.install-card .btn { margin: 4px 0; }
+
 /* フッター・トースト・ダイアログ */
 .footer { margin-top: 28px; font-size: 12px; color: var(--sub); text-align: center; }
 .footer a { color: inherit; }
