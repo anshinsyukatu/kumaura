@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>クマうら｜四柱推命・西洋占星術・手相の無料占い</title>
+<meta name="description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
+<meta name="theme-color" content="#2B2140">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="icon" href="img/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+<meta property="og:title" content="クマうら｜四柱推命・西洋占星術・手相の無料占い">
+<meta property="og:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://anshinsyukatu.github.io/kumaura/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="クマうら｜四柱推命・西洋占星術・手相の無料占い">
+<meta name="twitter:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
+<meta name="twitter:image" content="https://anshinsyukatu.github.io/kumaura/img/og-image.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ① 同意ゲート -->
+<section id="view-consent" class="view">
+  <h1 class="app-title">クマうら</h1>
+  <p class="disclaimer-title">ご利用の前に</p>
+  <div class="disclaimer-body">
+    <p>このサイトが表示する鑑定結果は、伝統的な占術の考え方にもとづく娯楽・参考情報です。将来の出来事や人の性質を、科学的に証明したり断定したりするものではありません。</p>
+    <ul>
+      <li>病気・死・寿命など、健康に関する断定はしません。</li>
+      <li>投資・金銭・法律・医療などに関する判断材料として使わないでください。</li>
+      <li>進学・就職・結婚・治療・契約など、大切な決定をするときは、この結果だけで判断せず、専門家や公的機関に相談してください。</li>
+      <li>結果の受け止め方は人それぞれです。気分が沈むような表現があった場合は、深く受け止めすぎないでください。</li>
+      <li>入力した生年月日や写真は、お使いのブラウザの中だけで処理され、送信・保存されることは一切ありません。</li>
+    </ul>
+    <p>上記の内容を理解し、同意いただける場合は「同意して始める」を押してください。</p>
+  </div>
+  <button type="button" class="btn" id="btn-consent-ok">同意して始める</button>
+  <button type="button" class="btn" id="btn-consent-ng">同意しない</button>
+  <p class="note hidden" id="consent-ng-note">同意いただけない場合は、このままページを閉じてください。</p>
+</section>
+
+<!-- ② モード選択 -->
+<section id="view-mode" class="view hidden">
+  <h1 class="app-title">クマうら</h1>
+  <p class="lead">今日はどちらの鑑定にしますか？</p>
+  <button type="button" class="btn btn-big" id="btn-mode-one">1人を占う</button>
+  <p class="note">1人の生年月日（と、任意で手相）から、その人をじっくり鑑定します。</p>
+  <button type="button" class="btn btn-big" id="btn-mode-two">2人の相性を占う</button>
+  <p class="note">2人それぞれの個人鑑定に加えて、2人の相性も鑑定します。2人とも入力が必要です（手相は任意）。</p>
+</section>
+
+<!-- ③ 入力画面 -->
+<section id="view-input" class="view hidden">
+  <h2 class="page-title">鑑定する人の入力</h2>
+  <p class="note" id="input-mode-note"></p>
+  <div id="forms"></div>
+  <button type="button" class="btn" id="btn-start">鑑定する</button>
+  <button type="button" class="btn" id="btn-clear">別の人を占う（入力をクリア）</button>
+  <h3 class="section-header">設定</h3>
+  <button type="button" class="btn" id="btn-show-consent">免責文面を再表示</button>
+  <p class="note">入力した内容は保存されません。ページを閉じる（再読み込みする）と、入力内容と写真はすべて消えます。</p>
+</section>
+
+<!-- ④ 結果画面（個人） -->
+<section id="view-result" class="view hidden">
+  <div id="result-body"></div>
+</section>
+
+<!-- ⑤ 相性画面 -->
+<section id="view-aishou" class="view hidden">
+  <div id="aishou-body"></div>
+</section>
+
+<footer class="footer">
+  <p>作った人：<a href="https://note.com/hiro_s1220" target="_blank" rel="noopener">ひろ（胃がんサバイバー）</a>（note）</p>
+  <p>クマうら｜鑑定結果は娯楽・参考情報です。入力した情報はブラウザの中だけで処理され、送信・保存されません。</p>
+</footer>
+
+<div id="toast" class="toast hidden"></div>
+
+<dialog id="dlg-explain" class="explain-dialog">
+  <h3 id="dlg-explain-title"></h3>
+  <p id="dlg-explain-body" class="explain-body"></p>
+  <button type="button" class="btn" id="dlg-explain-close">閉じる</button>
+</dialog>
+
+<script src="js/engine.js"></script>
+<script src="js/kaisetsu.js"></script>
+<script src="js/seiyo.js"></script>
+<script src="js/tesou.js"></script>
+<script src="js/matome.js"></script>
+<script src="js/palm.js"></script>
+<script src="js/report.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
