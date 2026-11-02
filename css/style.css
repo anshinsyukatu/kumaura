@@ -1,0 +1,206 @@
+/* クマうら Web版スタイル（Android版 v3.17 の配色・部品を再現） */
+:root {
+  --bg: rgb(250, 250, 250);
+  --text: rgb(33, 33, 33);
+  --sub: rgb(96, 96, 96);
+  --btn-bg: rgb(224, 224, 224);
+  --field-bg: rgb(255, 255, 255);
+  --highlight: rgb(255, 243, 205);
+  --accent: rgb(216, 67, 54);
+  --chip-good: rgb(46, 125, 50);
+  --chip-bad: rgb(198, 40, 40);
+  --chip-mid: rgb(249, 168, 37);
+  --border: rgb(190, 190, 190);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: rgb(18, 18, 18);
+    --text: rgb(238, 238, 238);
+    --sub: rgb(178, 178, 178);
+    --btn-bg: rgb(56, 56, 56);
+    --field-bg: rgb(32, 32, 32);
+    --highlight: rgb(74, 62, 26);
+    --border: rgb(90, 90, 90);
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 12px 14px 32px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Noto Sans JP", sans-serif;
+  font-size: 15px;
+  line-height: 1.55;
+}
+.hidden { display: none !important; }
+.app-title { font-size: 24px; margin: 8px 0 10px; }
+.page-title { font-size: 22px; margin: 8px 0 6px; }
+.lead { font-size: 16px; }
+.note { font-size: 12px; color: var(--sub); margin: 4px 0; }
+.small-note { font-size: 12px; color: var(--sub); }
+p { margin: 4px 0; }
+.text { font-size: 14px; padding: 2px 0; white-space: pre-wrap; }
+.text-15 { font-size: 15px; }
+.bold { font-weight: bold; }
+.subhead { font-size: 16px; font-weight: bold; margin: 10px 0 2px; }
+.subhead-15 { font-size: 15px; font-weight: bold; margin: 8px 0 2px; }
+.section-header {
+  font-size: 19px; font-weight: bold;
+  margin: 18px 0 4px; padding-top: 6px;
+}
+
+/* ボタン */
+.btn {
+  display: block; width: 100%;
+  margin: 8px 0; padding: 10px 12px;
+  background: var(--btn-bg); color: var(--text);
+  border: none; border-radius: 6px;
+  font-size: 15px; cursor: pointer;
+  font-family: inherit;
+}
+.btn-big { font-size: 18px; padding: 13px 12px; }
+.btn-accent { font-size: 17px; }
+.btn:active { opacity: 0.75; }
+.btn-row { display: flex; gap: 8px; }
+.btn-row .btn { flex: 1 1 0; width: auto; }
+
+/* 入力フォーム */
+.form-box { margin-bottom: 8px; }
+.label-row { display: flex; align-items: center; gap: 8px; margin: 7px 0; }
+.label-row > .flabel {
+  flex: 0 0 76px; font-size: 14px; font-weight: bold;
+}
+.label-row > .ffield { flex: 1 1 auto; min-width: 0; }
+input[type="text"], input[type="number"], select {
+  width: 100%; padding: 8px;
+  background: var(--field-bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 4px;
+  font-size: 15px; font-family: inherit;
+}
+.date-fields, .time-fields { display: flex; gap: 6px; }
+.date-fields input, .time-fields input { text-align: center; }
+.radio-group { display: flex; gap: 18px; align-items: center; }
+.radio-group label, .check-row label { font-size: 15px; display: inline-flex; align-items: center; gap: 5px; }
+.check-row { margin: 4px 0 4px 84px; font-size: 13px; }
+input[type="radio"], input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); }
+.palm-thumb { max-width: 100%; max-height: 180px; display: block; margin: 6px 0; border-radius: 4px; }
+input[type="file"] { font-size: 13px; color: var(--text); max-width: 100%; }
+
+/* 命式表カード */
+.meishiki { display: flex; gap: 4px; margin: 4px 0; }
+.pillar-card {
+  flex: 1 1 0; min-width: 0;
+  border: 1px solid var(--border); border-radius: 8px;
+  background: var(--field-bg);
+  padding: 6px 2px; text-align: center;
+}
+.pillar-card .pc-name { font-size: 12px; color: var(--sub); }
+.pillar-card .pc-kanji { font-size: 22px; font-weight: bold; }
+.pillar-card .pc-sub { font-size: 13px; }
+.pillar-card.day { background: var(--highlight); border: 2px solid var(--accent); }
+.pillar-card .pc-daymark { color: var(--accent); font-weight: bold; font-size: 12px; }
+
+/* 折りたたみ */
+.collapsible { margin: 6px 0; }
+.collapsible > .col-head {
+  display: block; width: 100%; text-align: left;
+  background: none; border: none; padding: 6px 0;
+  color: var(--text); font-size: 15px; font-weight: bold; cursor: pointer;
+  font-family: inherit;
+}
+.collapsible > .col-body { padding-left: 2px; }
+
+/* チップ */
+.chip {
+  display: inline-block; padding: 2px 8px; border-radius: 9px;
+  font-size: 11px; font-weight: bold; color: #fff; white-space: nowrap;
+}
+.chip.good { background: var(--chip-good); }
+.chip.bad { background: var(--chip-bad); }
+.chip.mid { background: var(--chip-mid); color: rgb(33, 33, 33); }
+.chip.accent { background: var(--accent); }
+
+/* バー（汎用） */
+.bar { background: var(--btn-bg); height: 12px; border-radius: 2px; overflow: hidden; }
+.bar > .bar-fill { height: 100%; }
+.bar.h14 { height: 14px; }
+.bar.h11 { height: 11px; }
+
+/* スコア行 */
+.score-row { display: flex; align-items: center; padding: 2px 0; }
+.score-row .sr-label { flex: 0 0 150px; font-size: 15px; }
+.score-row .bar { flex: 0 0 120px; margin-right: 8px; }
+.score-row .sr-value { font-size: 15px; font-weight: bold; }
+@media (max-width: 480px) {
+  .score-row .sr-label { flex-basis: 128px; font-size: 14px; }
+  .score-row .bar { flex: 1 1 auto; }
+}
+
+/* 五行グラフ */
+.gogyo-row { display: flex; align-items: center; padding: 2px 0; }
+.gogyo-row .g-label { flex: 0 0 28px; font-size: 15px; font-weight: bold; }
+.gogyo-row .bar { flex: 0 0 140px; height: 14px; margin-right: 8px; }
+.gogyo-row .g-count { font-size: 14px; }
+@media (max-width: 480px) { .gogyo-row .bar { flex: 1 1 auto; } }
+
+/* 五行比較 */
+.gogyo-cmp-name { flex: 0 0 96px; font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gogyo-cmp .bar { flex: 0 0 120px; height: 11px; margin-right: 8px; }
+@media (max-width: 480px) { .gogyo-cmp .bar { flex: 1 1 auto; } }
+
+/* 大運・年運行 */
+.fortune-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 5px 4px; border-radius: 6px;
+}
+.fortune-row.current { background: var(--highlight); }
+.fortune-row .fr-left { flex: 0 0 88px; font-size: 13px; }
+.fortune-row .fr-left .fr-age { font-size: 14px; }
+.fortune-row .fr-left .fr-year { font-size: 12px; color: var(--sub); }
+.fortune-row .fr-mid { flex: 1 1 auto; min-width: 0; }
+.fortune-row .fr-kanji { font-size: 19px; font-weight: bold; }
+.fortune-row .fr-kanji-17 { font-size: 17px; font-weight: bold; }
+.fortune-row .fr-note { font-size: 12px; color: var(--sub); }
+.fortune-row .fr-right { flex: 0 0 auto; text-align: right; }
+.level-line { display: flex; align-items: center; justify-content: flex-end; gap: 4px; margin-top: 3px; }
+.level-line .bar { flex: 0 0 84px; height: 10px; }
+.level-line .lv-num { font-size: 12px; color: var(--sub); }
+.chip-line { display: flex; gap: 4px; justify-content: flex-end; }
+
+/* グラフの横スクロール */
+.graph-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 4px 0; }
+.graph-scroll canvas { display: block; }
+
+/* ホロスコープ */
+.wheel-wrap { max-width: 340px; margin: 4px auto; }
+.wheel-wrap canvas { display: block; width: 100%; height: auto; }
+
+/* 相性 */
+.aishou-head-names { font-size: 15px; }
+.total-score { font-size: 20px; font-weight: bold; margin: 4px 0 2px; }
+
+/* フッター・トースト・ダイアログ */
+.footer { margin-top: 28px; font-size: 12px; color: var(--sub); text-align: center; }
+.footer a { color: inherit; }
+.toast {
+  position: fixed; left: 50%; bottom: 24px; transform: translateX(-50%);
+  background: rgba(33, 33, 33, 0.92); color: #fff;
+  padding: 10px 16px; border-radius: 20px; font-size: 14px;
+  max-width: 88vw; text-align: center; z-index: 50;
+}
+.explain-dialog {
+  max-width: 92vw; width: 560px;
+  background: var(--bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 10px;
+}
+.explain-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+.explain-body { white-space: pre-wrap; font-size: 14px; }
+.disclaimer-title { font-size: 15px; font-weight: bold; }
+.disclaimer-body p, .disclaimer-body li { font-size: 15px; line-height: 1.55; }
+.disclaimer-body ul { margin: 4px 0; padding-left: 0; list-style: none; }
+.disclaimer-body li { margin: 2px 0; }
+.view { animation: fadein 0.15s ease-in; }
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
