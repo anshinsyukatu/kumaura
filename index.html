@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>クマうら｜四柱推命・西洋占星術・手相の無料占い</title>
-<meta name="description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
+<meta name="description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる完全無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
 <meta name="theme-color" content="#2B2140">
 <link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
@@ -16,12 +16,12 @@
 <link rel="icon" href="img/favicon.ico" sizes="any">
 <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
 <meta property="og:title" content="クマうら｜四柱推命・西洋占星術・手相の無料占い">
-<meta property="og:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
+<meta property="og:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる完全無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://anshinsyukatu.github.io/kumaura/img/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="クマうら｜四柱推命・西洋占星術・手相の無料占い">
-<meta name="twitter:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
+<meta name="twitter:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる完全無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
 <meta name="twitter:image" content="https://anshinsyukatu.github.io/kumaura/img/og-image.png">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -30,6 +30,7 @@
 <!-- ① 同意ゲート -->
 <section id="view-consent" class="view">
   <h1 class="app-title">クマうら</h1>
+  <p class="free-badge">完全無料・登録不要で使えます。</p>
   <p class="disclaimer-title">ご利用の前に</p>
   <div class="disclaimer-body">
     <p>このサイトが表示する鑑定結果は、伝統的な占術の考え方にもとづく娯楽・参考情報です。将来の出来事や人の性質を、科学的に証明したり断定したりするものではありません。</p>
@@ -40,11 +41,9 @@
       <li>結果の受け止め方は人それぞれです。気分が沈むような表現があった場合は、深く受け止めすぎないでください。</li>
       <li>入力した生年月日や写真は、お使いのブラウザの中だけで処理され、送信・保存されることは一切ありません。</li>
     </ul>
+    <p>このサイトはエンターテイメントとしてお楽しみください。鑑定結果の転載・シェアは自由です。</p>
     <p>上記の内容を理解し、同意いただける場合は「同意して始める」を押してください。</p>
   </div>
-  <button type="button" class="btn" id="btn-consent-ok">同意して始める</button>
-  <button type="button" class="btn" id="btn-consent-ng">同意しない</button>
-  <p class="note hidden" id="consent-ng-note">同意いただけない場合は、このままページを閉じてください。</p>
 
   <!-- ホーム画面追加の案内（対応環境でのみ JS が表示する） -->
   <div id="pwa-card-android" class="install-card hidden">
@@ -58,6 +57,10 @@
     <p class="install-text">共有ボタン（□↑）を押して、『ホーム画面に追加』を選ぶと、アプリのように使えます。</p>
     <button type="button" class="btn" id="pwa-btn-ios-close">閉じる</button>
   </div>
+
+  <button type="button" class="btn" id="btn-consent-ok">同意して始める</button>
+  <button type="button" class="btn" id="btn-consent-ng">同意しない</button>
+  <p class="note hidden" id="consent-ng-note">同意いただけない場合は、このままページを閉じてください。</p>
 </section>
 
 <!-- ② モード選択 -->
@@ -94,7 +97,7 @@
 
 <footer class="footer">
   <p>作った人：<a href="https://note.com/hiro_s1220" target="_blank" rel="noopener">hiro（胃がんサバイバー）</a>（note）</p>
-  <p>クマうら｜鑑定結果は娯楽・参考情報です。入力した情報はブラウザの中だけで処理され、送信・保存されません。</p>
+  <p>クマうら｜鑑定結果は娯楽・参考情報です。鑑定結果の転載・シェアは自由です。入力した情報はブラウザの中だけで処理され、送信・保存されません。</p>
 </footer>
 
 <div id="toast" class="toast hidden"></div>
