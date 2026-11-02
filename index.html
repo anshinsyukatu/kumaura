@@ -6,6 +6,11 @@
 <title>クマうら｜四柱推命・西洋占星術・手相の無料占い</title>
 <meta name="description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
 <meta name="theme-color" content="#2B2140">
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="クマうら">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="icon" href="img/favicon.ico" sizes="any">
@@ -40,6 +45,19 @@
   <button type="button" class="btn" id="btn-consent-ok">同意して始める</button>
   <button type="button" class="btn" id="btn-consent-ng">同意しない</button>
   <p class="note hidden" id="consent-ng-note">同意いただけない場合は、このままページを閉じてください。</p>
+
+  <!-- ホーム画面追加の案内（対応環境でのみ JS が表示する） -->
+  <div id="pwa-card-android" class="install-card hidden">
+    <p class="install-text">ホーム画面に置いて、アプリのように使いますか？</p>
+    <div class="btn-row">
+      <button type="button" class="btn" id="pwa-btn-yes">はい（追加する）</button>
+      <button type="button" class="btn" id="pwa-btn-no">今はしない</button>
+    </div>
+  </div>
+  <div id="pwa-card-ios" class="install-card hidden">
+    <p class="install-text">共有ボタン（□↑）を押して、『ホーム画面に追加』を選ぶと、アプリのように使えます。</p>
+    <button type="button" class="btn" id="pwa-btn-ios-close">閉じる</button>
+  </div>
 </section>
 
 <!-- ② モード選択 -->
@@ -95,5 +113,6 @@
 <script src="js/palm.js"></script>
 <script src="js/report.js"></script>
 <script src="js/app.js"></script>
+<script src="js/install.js"></script>
 </body>
 </html>
