@@ -6,12 +6,13 @@
  * 資産を変更したら CACHE_VERSION を上げること（古いキャッシュは activate で破棄）。
  *
  * このファイルは js/install.js が単独で登録する（scope はサイトルート
- * ＝ /kumaura/）。OneSignal のプッシュ用ワーカーは push/ 配下に分離して
- * あり（scope は /kumaura/push/ のみ）、互いに衝突しない構成にしてある。
+ * ＝ /kumaura/）。キャッシュに加えて、標準 Web Push の受信（push）と
+ * 通知タップ時の遷移（notificationclick）もこのワーカーが担う。
+ * プッシュの購読登録は js/notify.js、配信は Cloudflare Worker 側。
  */
 "use strict";
 
-var CACHE_VERSION = "v4";
+var CACHE_VERSION = "v5";
 var CACHE_NAME = "kumaura-cache-" + CACHE_VERSION;
 
 var PRECACHE_URLS = [
@@ -58,6 +59,48 @@ self.addEventListener("activate", function (event) {
       }));
     }).then(function () {
       return self.clients.claim();
+    })
+  );
+});
+
+/* ---------- Web Push 受信 ---------- */
+// ペイロードは JSON（{title, body, url}）。形式が崩れていても
+// 通知そのものは必ず出す（userVisibleOnly の約束を守るため）。
+self.addEventListener("push", function (event) {
+  var data = {};
+  if (event.data) {
+    try {
+      data = event.data.json() || {};
+    } catch (e) {
+      data = { body: event.data.text() };
+    }
+  }
+  var title = data.title || "クマうら";
+  var options = {
+    body: data.body || "",
+    icon: "img/icon-192.png",
+    badge: "img/icon-192.png",
+    data: { url: data.url || "./" }
+  };
+  event.waitUntil(self.registration.showNotification(title, options));
+});
+
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  var target = (event.notification.data && event.notification.data.url) || "./";
+  event.waitUntil(
+    clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
+      for (var i = 0; i < list.length; i++) {
+        var client = list[i];
+        if (client.url.indexOf("/kumaura/") !== -1 && "focus" in client) {
+          if ("navigate" in client && client.url !== target) {
+            return client.navigate(target).then(function () { return client.focus(); });
+          }
+          return client.focus();
+        }
+      }
+      if (clients.openWindow) return clients.openWindow(target);
+      return undefined;
     })
   );
 });
