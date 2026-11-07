@@ -24,6 +24,8 @@
 <meta name="twitter:description" content="四柱推命・西洋占星術・星めぐり占い・手相をまとめて鑑定できる完全無料の占いサイト。生年月日と手相の写真から、あなた自身と、あの人との相性まで占えます。入力した情報はブラウザの中だけで処理され、送信・保存されません。">
 <meta name="twitter:image" content="https://anshinsyukatu.github.io/kumaura/img/og-image.png">
 <link rel="stylesheet" href="css/style.css">
+<!-- ウェブプッシュ通知（OneSignal Web SDK v16）。初期化は js/notify.js -->
+<script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
 </head>
 <body>
 
@@ -56,6 +58,15 @@
   <div id="pwa-card-ios" class="install-card hidden">
     <p class="install-text">共有ボタン（□↑）を押して、『ホーム画面に追加』を選ぶと、アプリのように使えます。</p>
     <button type="button" class="btn" id="pwa-btn-ios-close">閉じる</button>
+  </div>
+
+  <!-- プッシュ通知の購読カード（js/notify.js が表示・状態を制御する） -->
+  <div id="push-card" class="install-card hidden">
+    <p class="install-text" id="push-card-text">毎朝5時に『今日の一言』をお届けします</p>
+    <p class="note">通知の購読情報は配信サービス（OneSignal）に送られます。鑑定の入力内容はこれまで通り送信されません。</p>
+    <p class="note hidden" id="push-ios-note">iPhoneでは、ホーム画面に追加すると通知も使えます。</p>
+    <button type="button" class="btn" id="push-btn">通知を受け取る</button>
+    <p class="note hidden" id="push-status"></p>
   </div>
 
   <button type="button" class="btn" id="btn-consent-ok">同意して始める</button>
@@ -117,5 +128,6 @@
 <script src="js/report.js"></script>
 <script src="js/app.js"></script>
 <script src="js/install.js"></script>
+<script src="js/notify.js"></script>
 </body>
 </html>

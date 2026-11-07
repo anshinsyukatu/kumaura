@@ -1,13 +1,17 @@
 /*
- * クマうら Web版 Service Worker：
+ * クマうら Web版 Service Worker（キャッシュ担当）：
  * サイトの静的資産だけをキャッシュし、オフラインでも開けるようにする。
  * 入力値・写真などの個人データは一切扱わない（元々ブラウザ内処理のみで、
  * この Service Worker も GET の静的ファイルしか対象にしない）。
  * 資産を変更したら CACHE_VERSION を上げること（古いキャッシュは activate で破棄）。
+ *
+ * 注意：ブラウザに登録されるワーカー本体は OneSignalSDKWorker.js（統合入口）。
+ * このファイルは単独では登録されず、OneSignalSDKWorker.js から
+ * importScripts("sw.js") で取り込まれて動く。
  */
 "use strict";
 
-var CACHE_VERSION = "v2";
+var CACHE_VERSION = "v3";
 var CACHE_NAME = "kumaura-cache-" + CACHE_VERSION;
 
 var PRECACHE_URLS = [
@@ -24,6 +28,7 @@ var PRECACHE_URLS = [
   "js/report.js",
   "js/app.js",
   "js/install.js",
+  "js/notify.js",
   "img/favicon.svg",
   "img/favicon-32.png",
   "img/favicon-64.png",
