@@ -5,13 +5,13 @@
  * この Service Worker も GET の静的ファイルしか対象にしない）。
  * 資産を変更したら CACHE_VERSION を上げること（古いキャッシュは activate で破棄）。
  *
- * 注意：ブラウザに登録されるワーカー本体は OneSignalSDKWorker.js（統合入口）。
- * このファイルは単独では登録されず、OneSignalSDKWorker.js から
- * importScripts("sw.js") で取り込まれて動く。
+ * このファイルは js/install.js が単独で登録する（scope はサイトルート
+ * ＝ /kumaura/）。OneSignal のプッシュ用ワーカーは push/ 配下に分離して
+ * あり（scope は /kumaura/push/ のみ）、互いに衝突しない構成にしてある。
  */
 "use strict";
 
-var CACHE_VERSION = "v3";
+var CACHE_VERSION = "v4";
 var CACHE_NAME = "kumaura-cache-" + CACHE_VERSION;
 
 var PRECACHE_URLS = [
