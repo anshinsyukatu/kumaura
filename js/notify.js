@@ -5,9 +5,11 @@
 * ページを開いただけでは許可ダイアログを出さない。
 * - 購読情報（この端末の購読IDなど）は配信サービス OneSignal に送られる。
 * 鑑定の入力内容（生年月日・写真など）は従来どおり送信・保存されない。
-* - Service Worker は OneSignalSDKWorker.js（統合入口）に一本化済み。
-* ここでは登録しない（登録は install.js と OneSignal SDK が同じ
-* ファイル・同じ scope で行い、1つの登録に統合される）。
+* - Service Worker は PWA 用とプッシュ用で分離している。PWA 用は
+* sw.js（install.js が登録、scope はサイトルート /kumaura/)、プッシュ用は
+* push/OneSignalSDKWorker.js（scope は /kumaura/push/ のみ）で、登録は
+* 下の init を通じて OneSignal SDK が行う（ここでは直接登録しない）。
+* scope を分けるのは OneSignal 公式ドキュメントの推奨構成。
 *
 * ONESIGNAL_APP_ID を OneSignal 管理画面
 * （Settings > Keys & IDs）の App ID に差し替えること。
@@ -105,9 +107,11 @@ if (!PLACEHOLDER) {
 window.OneSignalDeferred.push(function (OneSignal) {
 return OneSignal.init({
 appId: ONESIGNAL_APP_ID,
-// サイトは /kumaura/ 配下。serviceWorkerPath はサイトルートからの相対指定
-serviceWorkerPath: "kumaura/OneSignalSDKWorker.js",
-serviceWorkerParam: { scope: "/kumaura/"}
+// プッシュ用ワーカーは PWA 用 sw.js と scope が衝突しないよう
+// push/ サブディレクトリに分離する（公式ドキュメントの推奨構成）。
+// serviceWorkerPath はサイトルートからの相対指定、scope は push/ のみ。
+serviceWorkerPath: "kumaura/push/OneSignalSDKWorker.js",
+serviceWorkerParam: { scope: "/kumaura/push/"}
 }).then(function () {
 osRef = OneSignal;
 try {
