@@ -4,6 +4,11 @@
  * - インストール案内カードの表示制御（同意画面の #pwa-card-android / #pwa-card-ios）
  * 保存するのは「カードを閉じた」という UI フラグのみ（sessionStorage）。
  * 入力値・写真などの個人データは一切保存しない。
+ *
+ * 登録するワーカーは OneSignalSDKWorker.js（統合入口）1本のみ。
+ * 中で OneSignal のプッシュ用ワーカーと sw.js（キャッシュ担当）を
+ * importScripts で取り込んでいる。OneSignal SDK 側も同じファイル・
+ * 同じ scope（/kumaura/）を登録しようとするため、登録は1つに統合される。
  */
 (function () {
   "use strict";
@@ -12,7 +17,7 @@
   if ("serviceWorker" in navigator &&
       (location.protocol === "https:" || location.protocol === "http:")) {
     window.addEventListener("load", function () {
-      navigator.serviceWorker.register("sw.js").catch(function () {
+      navigator.serviceWorker.register("OneSignalSDKWorker.js").catch(function () {
         /* 登録できなくてもサイト本体には影響しない */
       });
     });
