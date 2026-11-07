@@ -218,3 +218,7 @@ input[type="file"] { font-size: 13px; color: var(--text); max-width: 100%; }
 .disclaimer-body li { margin: 2px 0; }
 .view { animation: fadein 0.15s ease-in; }
 @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+.push-help { text-align: left; margin-top: 8px; }
+.push-help summary { cursor: pointer; }
+.push-help ul { margin: 4px 0 0; padding-left: 18px; }
+.push-help li { margin: 3px 0; }
