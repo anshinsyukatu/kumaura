@@ -12,7 +12,7 @@
  */
 "use strict";
 
-var CACHE_VERSION = "v6";
+var CACHE_VERSION = "v7";
 var CACHE_NAME = "kumaura-cache-" + CACHE_VERSION;
 
 var PRECACHE_URLS = [
@@ -31,6 +31,7 @@ var PRECACHE_URLS = [
   "js/install.js",
   "js/notify.js",
   "js/bgm.js",
+  "js/hitokoto.js",
   "img/favicon.svg",
   "img/favicon-32.png",
   "img/favicon-64.png",
