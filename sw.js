@@ -12,7 +12,7 @@
  */
 "use strict";
 
-var CACHE_VERSION = "v8";
+var CACHE_VERSION = "v9";
 var CACHE_NAME = "kumaura-cache-" + CACHE_VERSION;
 
 var PRECACHE_URLS = [
@@ -45,7 +45,16 @@ var PRECACHE_URLS = [
 self.addEventListener("install", function (event) {
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(PRECACHE_URLS);
+      // cache: "reload" で HTTP キャッシュを迂回して必ず新しいファイルを取りにいく
+      // （短時間に連続更新すると、古いファイルが新しいキャッシュに入ってしまう事故の対策）
+      return Promise.all(PRECACHE_URLS.map(function (u) {
+        return fetch(new Request(u, { cache: "reload" })).then(function (res) {
+          if (res && res.ok) return cache.put(u, res);
+          return undefined;
+        }).catch(function () {
+          return undefined;
+        });
+      }));
     }).then(function () {
       return self.skipWaiting();
     })
