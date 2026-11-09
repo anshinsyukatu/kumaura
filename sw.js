@@ -12,7 +12,7 @@
  */
 "use strict";
 
-var CACHE_VERSION = "v9";
+var CACHE_VERSION = "v10";
 var CACHE_NAME = "kumaura-cache-" + CACHE_VERSION;
 
 var PRECACHE_URLS = [
