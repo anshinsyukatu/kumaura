@@ -37,6 +37,17 @@ body {
 }
 .hidden { display: none !important; }
 .app-title { font-size: 24px; margin: 8px 0 10px; }
+/* クマ系共通マーク：名前の直後の円形バッジ（©風）。
+   背景を持つ要素なので、背景・枠・線画色はすべて固定値で指定し、
+   ダークモード（prefers-color-scheme）でも反転・同化しないようにする。 */
+.kuma-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 26px; margin-left: 6px;
+  vertical-align: middle;
+  background: #fffdf8;
+  border: 2px solid #d84336; border-radius: 50%;
+}
+.kuma-badge svg { display: block; }
 .page-title { font-size: 22px; margin: 8px 0 6px; }
 .lead { font-size: 16px; }
 .note { font-size: 12px; color: var(--sub); margin: 4px 0; }
